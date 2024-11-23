@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -18,13 +18,13 @@ const schema = yup.object().shape({
   username: yup.string().required("Usuário é obrigatório"),
   password: yup
     .string()
-    .min(8, "Senha deve ter pelo menos 8 caracteres")
+    .min(5, "Senha deve ter pelo menos 5 caracteres")
     .required("Senha é obrigatória"),
 });
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { isAuthenticated, login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -41,9 +41,8 @@ export default function LoginPage() {
     try {
       const response = await api.post("/auth/login/employee", data);
       const accessToken = response.data.accessToken;
-      localStorage.setItem("access-token", accessToken);
 
-      login();
+      login(accessToken);
       router.push("/");
     } catch (error) {
       console.error("Login failed:", error);
@@ -52,6 +51,12 @@ export default function LoginPage() {
       );
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]);
 
   return (
     <div
