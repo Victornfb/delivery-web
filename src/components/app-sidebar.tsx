@@ -50,7 +50,7 @@ const items = [
 
 const companyItems = [
   {
-    title: "Cardápio",
+    title: "Produtos",
     url: "menu",
     icon: Book,
   },
@@ -84,7 +84,7 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Restaurante</SidebarGroupLabel>
+          <SidebarGroupLabel>Empresa</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {companyItems.map((item) => (

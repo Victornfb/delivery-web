@@ -12,7 +12,7 @@ export function AppAccordion() {
       <AccordionItem value="item-1">
         <AccordionTrigger>
           <div className="container flex justify-between px-4">
-            <h2 className="text-lg font-semibold">Hambúrgueres</h2>
+            <h2 className="text-lg font-semibold">Categoria 1</h2>
 
             <div className="flex items-center justify-between gap-2">
               <span className="text-gray-500">Inativo</span>
